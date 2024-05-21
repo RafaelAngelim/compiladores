@@ -1,6 +1,6 @@
 import ply.lex as lex
 
-# Definindo os tokens
+
 tokens = (
     'ID', 'NUMBER', 'FLOAT', 'CHAR', 'STRING',
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'MOD',
@@ -11,7 +11,7 @@ tokens = (
     'INT', 'BOOLEAN', 'VOID', 'IF', 'ELSE', 'WHILE', 'FOR', 'RETURN', 'PRINTF', 'MAIN'
 )
 
-# Palavras-chave
+
 keywords = {
     'int': 'INT',
     'float': 'FLOAT',
@@ -28,7 +28,7 @@ keywords = {
     'return': 'RETURN'
 }
 
-# Tokens
+
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
@@ -50,7 +50,7 @@ t_RBRACE = r'\}'
 t_COMMA = r','
 t_SEMICOLON = r';'
 
-# Regras para tokens complexos
+
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = keywords.get(t.value, 'ID')
@@ -76,25 +76,21 @@ def t_STRING(t):
     t.value = t.value[1:-1]
     return t
 
-# Ignorar espaços e tabulações
 t_ignore = ' \t'
 
-# Comentários de linha
+
 def t_COMMENT(t):
     r'//.*'
     pass
 
-# Comentários de múltiplas linhas
 def t_COMMENT_MULTILINE(t):
     r'/\*[\s\S]*?\*/'
     pass
 
-# Nova linha
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-# Erros
 def t_error(t):
     print(f"Illegal character {t.value[0]}")
     t.lexer.skip(1)

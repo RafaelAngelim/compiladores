@@ -1,7 +1,6 @@
 import ply.yacc as yacc
 from lexer import tokens
 
-# Definindo a gramática
 
 def p_program(p):
     'program : declaration_list'
