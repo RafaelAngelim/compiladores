@@ -1,7 +1,7 @@
 from lexer import lexer
 from parser import parser
 
-source_code = '''
+code = '''
 int main() {
     int numero1 = 123;
     int numero2 = 456;
@@ -36,9 +36,9 @@ void imprimirValores(int valores[]) {
 }
 '''
 
-lexer.input(source_code)
+lexer.input(code)
 for token in lexer:
     print(token)
 
-result = parser.parse(source_code)
+result = parser.parse(code)
 print(result)
