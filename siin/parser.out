@@ -1,0 +1,1752 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ANDAND
+    ANDANDEQUAL
+    BOOLEAN
+    DOT
+    EQUALEQUAL
+    GREATER
+    GREATEREQUAL
+    KEYWORD
+    LBRACKET
+    LESS
+    LESSEQUAL
+    MINUSMINUS
+    MODULO
+    NOT
+    NOTEQUAL
+    OROR
+    OROREQUAL
+    PLUSPLUS
+    RBRACKET
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> declaration_list
+Rule 2     declaration_list -> declaration_list declaration
+Rule 3     declaration_list -> declaration
+Rule 4     declaration -> var_declaration
+Rule 5     declaration -> fun_declaration
+Rule 6     declaration -> struct_declaration
+Rule 7     declaration -> control_structure
+Rule 8     declaration -> comment
+Rule 9     var_declaration -> TYPE ID SEMICOLON
+Rule 10    var_declaration -> TYPE ID EQUALS expression SEMICOLON
+Rule 11    fun_declaration -> TYPE ID LPAREN params RPAREN block
+Rule 12    params -> param_list
+Rule 13    params -> empty
+Rule 14    param_list -> param_list COMMA param
+Rule 15    param_list -> param
+Rule 16    param -> TYPE ID
+Rule 17    block -> LBRACE declaration_list RBRACE
+Rule 18    comment -> COMMENT
+Rule 19    comment -> MULTICOMMENT
+Rule 20    expression -> assignment_expression
+Rule 21    expression -> simple_expression
+Rule 22    assignment_expression -> ID EQUALS expression
+Rule 23    assignment_expression -> ID PLUSEQUAL expression
+Rule 24    assignment_expression -> ID MINUSEQUAL expression
+Rule 25    assignment_expression -> ID TIMESEQUAL expression
+Rule 26    assignment_expression -> ID DIVEQUAL expression
+Rule 27    assignment_expression -> ID MODEQUAL expression
+Rule 28    simple_expression -> additive_expression
+Rule 29    additive_expression -> additive_expression PLUS term
+Rule 30    additive_expression -> additive_expression MINUS term
+Rule 31    additive_expression -> term
+Rule 32    term -> term TIMES factor
+Rule 33    term -> term DIVIDE factor
+Rule 34    term -> factor
+Rule 35    factor -> LPAREN expression RPAREN
+Rule 36    factor -> ID
+Rule 37    factor -> INT
+Rule 38    factor -> FLOAT
+Rule 39    factor -> STRING
+Rule 40    control_structure -> IF LPAREN expression RPAREN block
+Rule 41    control_structure -> IF LPAREN expression RPAREN block ELSE block
+Rule 42    control_structure -> WHILE LPAREN expression RPAREN block
+Rule 43    control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block
+Rule 44    control_structure -> RETURN expression SEMICOLON
+Rule 45    struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE
+Rule 46    var_declaration_list -> var_declaration_list var_declaration
+Rule 47    var_declaration_list -> var_declaration
+Rule 48    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ANDAND               : 
+ANDANDEQUAL          : 
+BOOLEAN              : 
+COMMA                : 14
+COMMENT              : 18
+DIVEQUAL             : 26
+DIVIDE               : 33
+DOT                  : 
+ELSE                 : 41
+EQUALEQUAL           : 
+EQUALS               : 10 22
+FLOAT                : 38
+FOR                  : 43
+GREATER              : 
+GREATEREQUAL         : 
+ID                   : 9 10 11 16 22 23 24 25 26 27 36 45
+IF                   : 40 41
+INT                  : 37
+KEYWORD              : 
+LBRACE               : 17 45
+LBRACKET             : 
+LESS                 : 
+LESSEQUAL            : 
+LPAREN               : 11 35 40 41 42 43
+MINUS                : 30
+MINUSEQUAL           : 24
+MINUSMINUS           : 
+MODEQUAL             : 27
+MODULO               : 
+MULTICOMMENT         : 19
+NOT                  : 
+NOTEQUAL             : 
+OROR                 : 
+OROREQUAL            : 
+PLUS                 : 29
+PLUSEQUAL            : 23
+PLUSPLUS             : 
+RBRACE               : 17 45
+RBRACKET             : 
+RETURN               : 44
+RPAREN               : 11 35 40 41 42 43
+SEMICOLON            : 9 10 43 43 44
+STRING               : 39
+STRUCT               : 45
+TIMES                : 32
+TIMESEQUAL           : 25
+TYPE                 : 9 10 11 16
+WHILE                : 42
+error                : 
+
+Nonterminals, with rules where they appear
+
+additive_expression  : 28 29 30
+assignment_expression : 20
+block                : 11 40 41 41 42 43
+comment              : 8
+control_structure    : 7
+declaration          : 2 3
+declaration_list     : 1 2 17
+empty                : 13
+expression           : 10 22 23 24 25 26 27 35 40 41 42 43 43 43 44
+factor               : 32 33 34
+fun_declaration      : 5
+param                : 14 15
+param_list           : 12 14
+params               : 11
+program              : 0
+simple_expression    : 21
+struct_declaration   : 6
+term                 : 29 30 31 32 33
+var_declaration      : 4 46 47
+var_declaration_list : 45 46
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . declaration_list
+    (2) declaration_list -> . declaration_list declaration
+    (3) declaration_list -> . declaration
+    (4) declaration -> . var_declaration
+    (5) declaration -> . fun_declaration
+    (6) declaration -> . struct_declaration
+    (7) declaration -> . control_structure
+    (8) declaration -> . comment
+    (9) var_declaration -> . TYPE ID SEMICOLON
+    (10) var_declaration -> . TYPE ID EQUALS expression SEMICOLON
+    (11) fun_declaration -> . TYPE ID LPAREN params RPAREN block
+    (45) struct_declaration -> . STRUCT ID LBRACE var_declaration_list RBRACE
+    (40) control_structure -> . IF LPAREN expression RPAREN block
+    (41) control_structure -> . IF LPAREN expression RPAREN block ELSE block
+    (42) control_structure -> . WHILE LPAREN expression RPAREN block
+    (43) control_structure -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block
+    (44) control_structure -> . RETURN expression SEMICOLON
+    (18) comment -> . COMMENT
+    (19) comment -> . MULTICOMMENT
+
+    TYPE            shift and go to state 9
+    STRUCT          shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
+    RETURN          shift and go to state 14
+    COMMENT         shift and go to state 15
+    MULTICOMMENT    shift and go to state 16
+
+    program                        shift and go to state 1
+    declaration_list               shift and go to state 2
+    declaration                    shift and go to state 3
+    var_declaration                shift and go to state 4
+    fun_declaration                shift and go to state 5
+    struct_declaration             shift and go to state 6
+    control_structure              shift and go to state 7
+    comment                        shift and go to state 8
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> declaration_list .
+    (2) declaration_list -> declaration_list . declaration
+    (4) declaration -> . var_declaration
+    (5) declaration -> . fun_declaration
+    (6) declaration -> . struct_declaration
+    (7) declaration -> . control_structure
+    (8) declaration -> . comment
+    (9) var_declaration -> . TYPE ID SEMICOLON
+    (10) var_declaration -> . TYPE ID EQUALS expression SEMICOLON
+    (11) fun_declaration -> . TYPE ID LPAREN params RPAREN block
+    (45) struct_declaration -> . STRUCT ID LBRACE var_declaration_list RBRACE
+    (40) control_structure -> . IF LPAREN expression RPAREN block
+    (41) control_structure -> . IF LPAREN expression RPAREN block ELSE block
+    (42) control_structure -> . WHILE LPAREN expression RPAREN block
+    (43) control_structure -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block
+    (44) control_structure -> . RETURN expression SEMICOLON
+    (18) comment -> . COMMENT
+    (19) comment -> . MULTICOMMENT
+
+    $end            reduce using rule 1 (program -> declaration_list .)
+    TYPE            shift and go to state 9
+    STRUCT          shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
+    RETURN          shift and go to state 14
+    COMMENT         shift and go to state 15
+    MULTICOMMENT    shift and go to state 16
+
+    declaration                    shift and go to state 17
+    var_declaration                shift and go to state 4
+    fun_declaration                shift and go to state 5
+    struct_declaration             shift and go to state 6
+    control_structure              shift and go to state 7
+    comment                        shift and go to state 8
+
+state 3
+
+    (3) declaration_list -> declaration .
+
+    TYPE            reduce using rule 3 (declaration_list -> declaration .)
+    STRUCT          reduce using rule 3 (declaration_list -> declaration .)
+    IF              reduce using rule 3 (declaration_list -> declaration .)
+    WHILE           reduce using rule 3 (declaration_list -> declaration .)
+    FOR             reduce using rule 3 (declaration_list -> declaration .)
+    RETURN          reduce using rule 3 (declaration_list -> declaration .)
+    COMMENT         reduce using rule 3 (declaration_list -> declaration .)
+    MULTICOMMENT    reduce using rule 3 (declaration_list -> declaration .)
+    $end            reduce using rule 3 (declaration_list -> declaration .)
+    RBRACE          reduce using rule 3 (declaration_list -> declaration .)
+
+
+state 4
+
+    (4) declaration -> var_declaration .
+
+    TYPE            reduce using rule 4 (declaration -> var_declaration .)
+    STRUCT          reduce using rule 4 (declaration -> var_declaration .)
+    IF              reduce using rule 4 (declaration -> var_declaration .)
+    WHILE           reduce using rule 4 (declaration -> var_declaration .)
+    FOR             reduce using rule 4 (declaration -> var_declaration .)
+    RETURN          reduce using rule 4 (declaration -> var_declaration .)
+    COMMENT         reduce using rule 4 (declaration -> var_declaration .)
+    MULTICOMMENT    reduce using rule 4 (declaration -> var_declaration .)
+    $end            reduce using rule 4 (declaration -> var_declaration .)
+    RBRACE          reduce using rule 4 (declaration -> var_declaration .)
+
+
+state 5
+
+    (5) declaration -> fun_declaration .
+
+    TYPE            reduce using rule 5 (declaration -> fun_declaration .)
+    STRUCT          reduce using rule 5 (declaration -> fun_declaration .)
+    IF              reduce using rule 5 (declaration -> fun_declaration .)
+    WHILE           reduce using rule 5 (declaration -> fun_declaration .)
+    FOR             reduce using rule 5 (declaration -> fun_declaration .)
+    RETURN          reduce using rule 5 (declaration -> fun_declaration .)
+    COMMENT         reduce using rule 5 (declaration -> fun_declaration .)
+    MULTICOMMENT    reduce using rule 5 (declaration -> fun_declaration .)
+    $end            reduce using rule 5 (declaration -> fun_declaration .)
+    RBRACE          reduce using rule 5 (declaration -> fun_declaration .)
+
+
+state 6
+
+    (6) declaration -> struct_declaration .
+
+    TYPE            reduce using rule 6 (declaration -> struct_declaration .)
+    STRUCT          reduce using rule 6 (declaration -> struct_declaration .)
+    IF              reduce using rule 6 (declaration -> struct_declaration .)
+    WHILE           reduce using rule 6 (declaration -> struct_declaration .)
+    FOR             reduce using rule 6 (declaration -> struct_declaration .)
+    RETURN          reduce using rule 6 (declaration -> struct_declaration .)
+    COMMENT         reduce using rule 6 (declaration -> struct_declaration .)
+    MULTICOMMENT    reduce using rule 6 (declaration -> struct_declaration .)
+    $end            reduce using rule 6 (declaration -> struct_declaration .)
+    RBRACE          reduce using rule 6 (declaration -> struct_declaration .)
+
+
+state 7
+
+    (7) declaration -> control_structure .
+
+    TYPE            reduce using rule 7 (declaration -> control_structure .)
+    STRUCT          reduce using rule 7 (declaration -> control_structure .)
+    IF              reduce using rule 7 (declaration -> control_structure .)
+    WHILE           reduce using rule 7 (declaration -> control_structure .)
+    FOR             reduce using rule 7 (declaration -> control_structure .)
+    RETURN          reduce using rule 7 (declaration -> control_structure .)
+    COMMENT         reduce using rule 7 (declaration -> control_structure .)
+    MULTICOMMENT    reduce using rule 7 (declaration -> control_structure .)
+    $end            reduce using rule 7 (declaration -> control_structure .)
+    RBRACE          reduce using rule 7 (declaration -> control_structure .)
+
+
+state 8
+
+    (8) declaration -> comment .
+
+    TYPE            reduce using rule 8 (declaration -> comment .)
+    STRUCT          reduce using rule 8 (declaration -> comment .)
+    IF              reduce using rule 8 (declaration -> comment .)
+    WHILE           reduce using rule 8 (declaration -> comment .)
+    FOR             reduce using rule 8 (declaration -> comment .)
+    RETURN          reduce using rule 8 (declaration -> comment .)
+    COMMENT         reduce using rule 8 (declaration -> comment .)
+    MULTICOMMENT    reduce using rule 8 (declaration -> comment .)
+    $end            reduce using rule 8 (declaration -> comment .)
+    RBRACE          reduce using rule 8 (declaration -> comment .)
+
+
+state 9
+
+    (9) var_declaration -> TYPE . ID SEMICOLON
+    (10) var_declaration -> TYPE . ID EQUALS expression SEMICOLON
+    (11) fun_declaration -> TYPE . ID LPAREN params RPAREN block
+
+    ID              shift and go to state 18
+
+
+state 10
+
+    (45) struct_declaration -> STRUCT . ID LBRACE var_declaration_list RBRACE
+
+    ID              shift and go to state 19
+
+
+state 11
+
+    (40) control_structure -> IF . LPAREN expression RPAREN block
+    (41) control_structure -> IF . LPAREN expression RPAREN block ELSE block
+
+    LPAREN          shift and go to state 20
+
+
+state 12
+
+    (42) control_structure -> WHILE . LPAREN expression RPAREN block
+
+    LPAREN          shift and go to state 21
+
+
+state 13
+
+    (43) control_structure -> FOR . LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block
+
+    LPAREN          shift and go to state 22
+
+
+state 14
+
+    (44) control_structure -> RETURN . expression SEMICOLON
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 23
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 15
+
+    (18) comment -> COMMENT .
+
+    TYPE            reduce using rule 18 (comment -> COMMENT .)
+    STRUCT          reduce using rule 18 (comment -> COMMENT .)
+    IF              reduce using rule 18 (comment -> COMMENT .)
+    WHILE           reduce using rule 18 (comment -> COMMENT .)
+    FOR             reduce using rule 18 (comment -> COMMENT .)
+    RETURN          reduce using rule 18 (comment -> COMMENT .)
+    COMMENT         reduce using rule 18 (comment -> COMMENT .)
+    MULTICOMMENT    reduce using rule 18 (comment -> COMMENT .)
+    $end            reduce using rule 18 (comment -> COMMENT .)
+    RBRACE          reduce using rule 18 (comment -> COMMENT .)
+
+
+state 16
+
+    (19) comment -> MULTICOMMENT .
+
+    TYPE            reduce using rule 19 (comment -> MULTICOMMENT .)
+    STRUCT          reduce using rule 19 (comment -> MULTICOMMENT .)
+    IF              reduce using rule 19 (comment -> MULTICOMMENT .)
+    WHILE           reduce using rule 19 (comment -> MULTICOMMENT .)
+    FOR             reduce using rule 19 (comment -> MULTICOMMENT .)
+    RETURN          reduce using rule 19 (comment -> MULTICOMMENT .)
+    COMMENT         reduce using rule 19 (comment -> MULTICOMMENT .)
+    MULTICOMMENT    reduce using rule 19 (comment -> MULTICOMMENT .)
+    $end            reduce using rule 19 (comment -> MULTICOMMENT .)
+    RBRACE          reduce using rule 19 (comment -> MULTICOMMENT .)
+
+
+state 17
+
+    (2) declaration_list -> declaration_list declaration .
+
+    TYPE            reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    STRUCT          reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    IF              reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    WHILE           reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    FOR             reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    RETURN          reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    COMMENT         reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    MULTICOMMENT    reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    $end            reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    RBRACE          reduce using rule 2 (declaration_list -> declaration_list declaration .)
+
+
+state 18
+
+    (9) var_declaration -> TYPE ID . SEMICOLON
+    (10) var_declaration -> TYPE ID . EQUALS expression SEMICOLON
+    (11) fun_declaration -> TYPE ID . LPAREN params RPAREN block
+
+    SEMICOLON       shift and go to state 34
+    EQUALS          shift and go to state 35
+    LPAREN          shift and go to state 36
+
+
+state 19
+
+    (45) struct_declaration -> STRUCT ID . LBRACE var_declaration_list RBRACE
+
+    LBRACE          shift and go to state 37
+
+
+state 20
+
+    (40) control_structure -> IF LPAREN . expression RPAREN block
+    (41) control_structure -> IF LPAREN . expression RPAREN block ELSE block
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 38
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 21
+
+    (42) control_structure -> WHILE LPAREN . expression RPAREN block
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 39
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 22
+
+    (43) control_structure -> FOR LPAREN . expression SEMICOLON expression SEMICOLON expression RPAREN block
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 40
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 23
+
+    (44) control_structure -> RETURN expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 41
+
+
+state 24
+
+    (20) expression -> assignment_expression .
+
+    SEMICOLON       reduce using rule 20 (expression -> assignment_expression .)
+    RPAREN          reduce using rule 20 (expression -> assignment_expression .)
+
+
+state 25
+
+    (21) expression -> simple_expression .
+
+    SEMICOLON       reduce using rule 21 (expression -> simple_expression .)
+    RPAREN          reduce using rule 21 (expression -> simple_expression .)
+
+
+state 26
+
+    (22) assignment_expression -> ID . EQUALS expression
+    (23) assignment_expression -> ID . PLUSEQUAL expression
+    (24) assignment_expression -> ID . MINUSEQUAL expression
+    (25) assignment_expression -> ID . TIMESEQUAL expression
+    (26) assignment_expression -> ID . DIVEQUAL expression
+    (27) assignment_expression -> ID . MODEQUAL expression
+    (36) factor -> ID .
+
+    EQUALS          shift and go to state 42
+    PLUSEQUAL       shift and go to state 43
+    MINUSEQUAL      shift and go to state 44
+    TIMESEQUAL      shift and go to state 45
+    DIVEQUAL        shift and go to state 46
+    MODEQUAL        shift and go to state 47
+    TIMES           reduce using rule 36 (factor -> ID .)
+    DIVIDE          reduce using rule 36 (factor -> ID .)
+    PLUS            reduce using rule 36 (factor -> ID .)
+    MINUS           reduce using rule 36 (factor -> ID .)
+    SEMICOLON       reduce using rule 36 (factor -> ID .)
+    RPAREN          reduce using rule 36 (factor -> ID .)
+
+
+state 27
+
+    (28) simple_expression -> additive_expression .
+    (29) additive_expression -> additive_expression . PLUS term
+    (30) additive_expression -> additive_expression . MINUS term
+
+    SEMICOLON       reduce using rule 28 (simple_expression -> additive_expression .)
+    RPAREN          reduce using rule 28 (simple_expression -> additive_expression .)
+    PLUS            shift and go to state 48
+    MINUS           shift and go to state 49
+
+
+state 28
+
+    (31) additive_expression -> term .
+    (32) term -> term . TIMES factor
+    (33) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 31 (additive_expression -> term .)
+    MINUS           reduce using rule 31 (additive_expression -> term .)
+    SEMICOLON       reduce using rule 31 (additive_expression -> term .)
+    RPAREN          reduce using rule 31 (additive_expression -> term .)
+    TIMES           shift and go to state 50
+    DIVIDE          shift and go to state 51
+
+
+state 29
+
+    (34) term -> factor .
+
+    TIMES           reduce using rule 34 (term -> factor .)
+    DIVIDE          reduce using rule 34 (term -> factor .)
+    PLUS            reduce using rule 34 (term -> factor .)
+    MINUS           reduce using rule 34 (term -> factor .)
+    SEMICOLON       reduce using rule 34 (term -> factor .)
+    RPAREN          reduce using rule 34 (term -> factor .)
+
+
+state 30
+
+    (35) factor -> LPAREN . expression RPAREN
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 52
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 31
+
+    (37) factor -> INT .
+
+    TIMES           reduce using rule 37 (factor -> INT .)
+    DIVIDE          reduce using rule 37 (factor -> INT .)
+    PLUS            reduce using rule 37 (factor -> INT .)
+    MINUS           reduce using rule 37 (factor -> INT .)
+    SEMICOLON       reduce using rule 37 (factor -> INT .)
+    RPAREN          reduce using rule 37 (factor -> INT .)
+
+
+state 32
+
+    (38) factor -> FLOAT .
+
+    TIMES           reduce using rule 38 (factor -> FLOAT .)
+    DIVIDE          reduce using rule 38 (factor -> FLOAT .)
+    PLUS            reduce using rule 38 (factor -> FLOAT .)
+    MINUS           reduce using rule 38 (factor -> FLOAT .)
+    SEMICOLON       reduce using rule 38 (factor -> FLOAT .)
+    RPAREN          reduce using rule 38 (factor -> FLOAT .)
+
+
+state 33
+
+    (39) factor -> STRING .
+
+    TIMES           reduce using rule 39 (factor -> STRING .)
+    DIVIDE          reduce using rule 39 (factor -> STRING .)
+    PLUS            reduce using rule 39 (factor -> STRING .)
+    MINUS           reduce using rule 39 (factor -> STRING .)
+    SEMICOLON       reduce using rule 39 (factor -> STRING .)
+    RPAREN          reduce using rule 39 (factor -> STRING .)
+
+
+state 34
+
+    (9) var_declaration -> TYPE ID SEMICOLON .
+
+    TYPE            reduce using rule 9 (var_declaration -> TYPE ID SEMICOLON .)
+    STRUCT          reduce using rule 9 (var_declaration -> TYPE ID SEMICOLON .)
+    IF              reduce using rule 9 (var_declaration -> TYPE ID SEMICOLON .)
+    WHILE           reduce using rule 9 (var_declaration -> TYPE ID SEMICOLON .)
+    FOR             reduce using rule 9 (var_declaration -> TYPE ID SEMICOLON .)
+    RETURN          reduce using rule 9 (var_declaration -> TYPE ID SEMICOLON .)
+    COMMENT         reduce using rule 9 (var_declaration -> TYPE ID SEMICOLON .)
+    MULTICOMMENT    reduce using rule 9 (var_declaration -> TYPE ID SEMICOLON .)
+    $end            reduce using rule 9 (var_declaration -> TYPE ID SEMICOLON .)
+    RBRACE          reduce using rule 9 (var_declaration -> TYPE ID SEMICOLON .)
+
+
+state 35
+
+    (10) var_declaration -> TYPE ID EQUALS . expression SEMICOLON
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 53
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 36
+
+    (11) fun_declaration -> TYPE ID LPAREN . params RPAREN block
+    (12) params -> . param_list
+    (13) params -> . empty
+    (14) param_list -> . param_list COMMA param
+    (15) param_list -> . param
+    (48) empty -> .
+    (16) param -> . TYPE ID
+
+    RPAREN          reduce using rule 48 (empty -> .)
+    TYPE            shift and go to state 54
+
+    params                         shift and go to state 55
+    param_list                     shift and go to state 56
+    empty                          shift and go to state 57
+    param                          shift and go to state 58
+
+state 37
+
+    (45) struct_declaration -> STRUCT ID LBRACE . var_declaration_list RBRACE
+    (46) var_declaration_list -> . var_declaration_list var_declaration
+    (47) var_declaration_list -> . var_declaration
+    (9) var_declaration -> . TYPE ID SEMICOLON
+    (10) var_declaration -> . TYPE ID EQUALS expression SEMICOLON
+
+    TYPE            shift and go to state 61
+
+    var_declaration_list           shift and go to state 59
+    var_declaration                shift and go to state 60
+
+state 38
+
+    (40) control_structure -> IF LPAREN expression . RPAREN block
+    (41) control_structure -> IF LPAREN expression . RPAREN block ELSE block
+
+    RPAREN          shift and go to state 62
+
+
+state 39
+
+    (42) control_structure -> WHILE LPAREN expression . RPAREN block
+
+    RPAREN          shift and go to state 63
+
+
+state 40
+
+    (43) control_structure -> FOR LPAREN expression . SEMICOLON expression SEMICOLON expression RPAREN block
+
+    SEMICOLON       shift and go to state 64
+
+
+state 41
+
+    (44) control_structure -> RETURN expression SEMICOLON .
+
+    TYPE            reduce using rule 44 (control_structure -> RETURN expression SEMICOLON .)
+    STRUCT          reduce using rule 44 (control_structure -> RETURN expression SEMICOLON .)
+    IF              reduce using rule 44 (control_structure -> RETURN expression SEMICOLON .)
+    WHILE           reduce using rule 44 (control_structure -> RETURN expression SEMICOLON .)
+    FOR             reduce using rule 44 (control_structure -> RETURN expression SEMICOLON .)
+    RETURN          reduce using rule 44 (control_structure -> RETURN expression SEMICOLON .)
+    COMMENT         reduce using rule 44 (control_structure -> RETURN expression SEMICOLON .)
+    MULTICOMMENT    reduce using rule 44 (control_structure -> RETURN expression SEMICOLON .)
+    $end            reduce using rule 44 (control_structure -> RETURN expression SEMICOLON .)
+    RBRACE          reduce using rule 44 (control_structure -> RETURN expression SEMICOLON .)
+
+
+state 42
+
+    (22) assignment_expression -> ID EQUALS . expression
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 65
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 43
+
+    (23) assignment_expression -> ID PLUSEQUAL . expression
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 66
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 44
+
+    (24) assignment_expression -> ID MINUSEQUAL . expression
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 67
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 45
+
+    (25) assignment_expression -> ID TIMESEQUAL . expression
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 68
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 46
+
+    (26) assignment_expression -> ID DIVEQUAL . expression
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 69
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 47
+
+    (27) assignment_expression -> ID MODEQUAL . expression
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 70
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 48
+
+    (29) additive_expression -> additive_expression PLUS . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    LPAREN          shift and go to state 30
+    ID              shift and go to state 72
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    term                           shift and go to state 71
+    factor                         shift and go to state 29
+
+state 49
+
+    (30) additive_expression -> additive_expression MINUS . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    LPAREN          shift and go to state 30
+    ID              shift and go to state 72
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    term                           shift and go to state 73
+    factor                         shift and go to state 29
+
+state 50
+
+    (32) term -> term TIMES . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    LPAREN          shift and go to state 30
+    ID              shift and go to state 72
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    factor                         shift and go to state 74
+
+state 51
+
+    (33) term -> term DIVIDE . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    LPAREN          shift and go to state 30
+    ID              shift and go to state 72
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    factor                         shift and go to state 75
+
+state 52
+
+    (35) factor -> LPAREN expression . RPAREN
+
+    RPAREN          shift and go to state 76
+
+
+state 53
+
+    (10) var_declaration -> TYPE ID EQUALS expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 77
+
+
+state 54
+
+    (16) param -> TYPE . ID
+
+    ID              shift and go to state 78
+
+
+state 55
+
+    (11) fun_declaration -> TYPE ID LPAREN params . RPAREN block
+
+    RPAREN          shift and go to state 79
+
+
+state 56
+
+    (12) params -> param_list .
+    (14) param_list -> param_list . COMMA param
+
+    RPAREN          reduce using rule 12 (params -> param_list .)
+    COMMA           shift and go to state 80
+
+
+state 57
+
+    (13) params -> empty .
+
+    RPAREN          reduce using rule 13 (params -> empty .)
+
+
+state 58
+
+    (15) param_list -> param .
+
+    COMMA           reduce using rule 15 (param_list -> param .)
+    RPAREN          reduce using rule 15 (param_list -> param .)
+
+
+state 59
+
+    (45) struct_declaration -> STRUCT ID LBRACE var_declaration_list . RBRACE
+    (46) var_declaration_list -> var_declaration_list . var_declaration
+    (9) var_declaration -> . TYPE ID SEMICOLON
+    (10) var_declaration -> . TYPE ID EQUALS expression SEMICOLON
+
+    RBRACE          shift and go to state 81
+    TYPE            shift and go to state 61
+
+    var_declaration                shift and go to state 82
+
+state 60
+
+    (47) var_declaration_list -> var_declaration .
+
+    RBRACE          reduce using rule 47 (var_declaration_list -> var_declaration .)
+    TYPE            reduce using rule 47 (var_declaration_list -> var_declaration .)
+
+
+state 61
+
+    (9) var_declaration -> TYPE . ID SEMICOLON
+    (10) var_declaration -> TYPE . ID EQUALS expression SEMICOLON
+
+    ID              shift and go to state 83
+
+
+state 62
+
+    (40) control_structure -> IF LPAREN expression RPAREN . block
+    (41) control_structure -> IF LPAREN expression RPAREN . block ELSE block
+    (17) block -> . LBRACE declaration_list RBRACE
+
+    LBRACE          shift and go to state 85
+
+    block                          shift and go to state 84
+
+state 63
+
+    (42) control_structure -> WHILE LPAREN expression RPAREN . block
+    (17) block -> . LBRACE declaration_list RBRACE
+
+    LBRACE          shift and go to state 85
+
+    block                          shift and go to state 86
+
+state 64
+
+    (43) control_structure -> FOR LPAREN expression SEMICOLON . expression SEMICOLON expression RPAREN block
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 87
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 65
+
+    (22) assignment_expression -> ID EQUALS expression .
+
+    SEMICOLON       reduce using rule 22 (assignment_expression -> ID EQUALS expression .)
+    RPAREN          reduce using rule 22 (assignment_expression -> ID EQUALS expression .)
+
+
+state 66
+
+    (23) assignment_expression -> ID PLUSEQUAL expression .
+
+    SEMICOLON       reduce using rule 23 (assignment_expression -> ID PLUSEQUAL expression .)
+    RPAREN          reduce using rule 23 (assignment_expression -> ID PLUSEQUAL expression .)
+
+
+state 67
+
+    (24) assignment_expression -> ID MINUSEQUAL expression .
+
+    SEMICOLON       reduce using rule 24 (assignment_expression -> ID MINUSEQUAL expression .)
+    RPAREN          reduce using rule 24 (assignment_expression -> ID MINUSEQUAL expression .)
+
+
+state 68
+
+    (25) assignment_expression -> ID TIMESEQUAL expression .
+
+    SEMICOLON       reduce using rule 25 (assignment_expression -> ID TIMESEQUAL expression .)
+    RPAREN          reduce using rule 25 (assignment_expression -> ID TIMESEQUAL expression .)
+
+
+state 69
+
+    (26) assignment_expression -> ID DIVEQUAL expression .
+
+    SEMICOLON       reduce using rule 26 (assignment_expression -> ID DIVEQUAL expression .)
+    RPAREN          reduce using rule 26 (assignment_expression -> ID DIVEQUAL expression .)
+
+
+state 70
+
+    (27) assignment_expression -> ID MODEQUAL expression .
+
+    SEMICOLON       reduce using rule 27 (assignment_expression -> ID MODEQUAL expression .)
+    RPAREN          reduce using rule 27 (assignment_expression -> ID MODEQUAL expression .)
+
+
+state 71
+
+    (29) additive_expression -> additive_expression PLUS term .
+    (32) term -> term . TIMES factor
+    (33) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 29 (additive_expression -> additive_expression PLUS term .)
+    MINUS           reduce using rule 29 (additive_expression -> additive_expression PLUS term .)
+    SEMICOLON       reduce using rule 29 (additive_expression -> additive_expression PLUS term .)
+    RPAREN          reduce using rule 29 (additive_expression -> additive_expression PLUS term .)
+    TIMES           shift and go to state 50
+    DIVIDE          shift and go to state 51
+
+
+state 72
+
+    (36) factor -> ID .
+
+    TIMES           reduce using rule 36 (factor -> ID .)
+    DIVIDE          reduce using rule 36 (factor -> ID .)
+    PLUS            reduce using rule 36 (factor -> ID .)
+    MINUS           reduce using rule 36 (factor -> ID .)
+    SEMICOLON       reduce using rule 36 (factor -> ID .)
+    RPAREN          reduce using rule 36 (factor -> ID .)
+
+
+state 73
+
+    (30) additive_expression -> additive_expression MINUS term .
+    (32) term -> term . TIMES factor
+    (33) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 30 (additive_expression -> additive_expression MINUS term .)
+    MINUS           reduce using rule 30 (additive_expression -> additive_expression MINUS term .)
+    SEMICOLON       reduce using rule 30 (additive_expression -> additive_expression MINUS term .)
+    RPAREN          reduce using rule 30 (additive_expression -> additive_expression MINUS term .)
+    TIMES           shift and go to state 50
+    DIVIDE          shift and go to state 51
+
+
+state 74
+
+    (32) term -> term TIMES factor .
+
+    TIMES           reduce using rule 32 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 32 (term -> term TIMES factor .)
+    PLUS            reduce using rule 32 (term -> term TIMES factor .)
+    MINUS           reduce using rule 32 (term -> term TIMES factor .)
+    SEMICOLON       reduce using rule 32 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 32 (term -> term TIMES factor .)
+
+
+state 75
+
+    (33) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 33 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 33 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 33 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 33 (term -> term DIVIDE factor .)
+    SEMICOLON       reduce using rule 33 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 33 (term -> term DIVIDE factor .)
+
+
+state 76
+
+    (35) factor -> LPAREN expression RPAREN .
+
+    TIMES           reduce using rule 35 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 35 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 35 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 35 (factor -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 35 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 35 (factor -> LPAREN expression RPAREN .)
+
+
+state 77
+
+    (10) var_declaration -> TYPE ID EQUALS expression SEMICOLON .
+
+    TYPE            reduce using rule 10 (var_declaration -> TYPE ID EQUALS expression SEMICOLON .)
+    STRUCT          reduce using rule 10 (var_declaration -> TYPE ID EQUALS expression SEMICOLON .)
+    IF              reduce using rule 10 (var_declaration -> TYPE ID EQUALS expression SEMICOLON .)
+    WHILE           reduce using rule 10 (var_declaration -> TYPE ID EQUALS expression SEMICOLON .)
+    FOR             reduce using rule 10 (var_declaration -> TYPE ID EQUALS expression SEMICOLON .)
+    RETURN          reduce using rule 10 (var_declaration -> TYPE ID EQUALS expression SEMICOLON .)
+    COMMENT         reduce using rule 10 (var_declaration -> TYPE ID EQUALS expression SEMICOLON .)
+    MULTICOMMENT    reduce using rule 10 (var_declaration -> TYPE ID EQUALS expression SEMICOLON .)
+    $end            reduce using rule 10 (var_declaration -> TYPE ID EQUALS expression SEMICOLON .)
+    RBRACE          reduce using rule 10 (var_declaration -> TYPE ID EQUALS expression SEMICOLON .)
+
+
+state 78
+
+    (16) param -> TYPE ID .
+
+    COMMA           reduce using rule 16 (param -> TYPE ID .)
+    RPAREN          reduce using rule 16 (param -> TYPE ID .)
+
+
+state 79
+
+    (11) fun_declaration -> TYPE ID LPAREN params RPAREN . block
+    (17) block -> . LBRACE declaration_list RBRACE
+
+    LBRACE          shift and go to state 85
+
+    block                          shift and go to state 88
+
+state 80
+
+    (14) param_list -> param_list COMMA . param
+    (16) param -> . TYPE ID
+
+    TYPE            shift and go to state 54
+
+    param                          shift and go to state 89
+
+state 81
+
+    (45) struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE .
+
+    TYPE            reduce using rule 45 (struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE .)
+    STRUCT          reduce using rule 45 (struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE .)
+    IF              reduce using rule 45 (struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE .)
+    WHILE           reduce using rule 45 (struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE .)
+    FOR             reduce using rule 45 (struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE .)
+    RETURN          reduce using rule 45 (struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE .)
+    COMMENT         reduce using rule 45 (struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE .)
+    MULTICOMMENT    reduce using rule 45 (struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE .)
+    $end            reduce using rule 45 (struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE .)
+    RBRACE          reduce using rule 45 (struct_declaration -> STRUCT ID LBRACE var_declaration_list RBRACE .)
+
+
+state 82
+
+    (46) var_declaration_list -> var_declaration_list var_declaration .
+
+    RBRACE          reduce using rule 46 (var_declaration_list -> var_declaration_list var_declaration .)
+    TYPE            reduce using rule 46 (var_declaration_list -> var_declaration_list var_declaration .)
+
+
+state 83
+
+    (9) var_declaration -> TYPE ID . SEMICOLON
+    (10) var_declaration -> TYPE ID . EQUALS expression SEMICOLON
+
+    SEMICOLON       shift and go to state 34
+    EQUALS          shift and go to state 35
+
+
+state 84
+
+    (40) control_structure -> IF LPAREN expression RPAREN block .
+    (41) control_structure -> IF LPAREN expression RPAREN block . ELSE block
+
+    TYPE            reduce using rule 40 (control_structure -> IF LPAREN expression RPAREN block .)
+    STRUCT          reduce using rule 40 (control_structure -> IF LPAREN expression RPAREN block .)
+    IF              reduce using rule 40 (control_structure -> IF LPAREN expression RPAREN block .)
+    WHILE           reduce using rule 40 (control_structure -> IF LPAREN expression RPAREN block .)
+    FOR             reduce using rule 40 (control_structure -> IF LPAREN expression RPAREN block .)
+    RETURN          reduce using rule 40 (control_structure -> IF LPAREN expression RPAREN block .)
+    COMMENT         reduce using rule 40 (control_structure -> IF LPAREN expression RPAREN block .)
+    MULTICOMMENT    reduce using rule 40 (control_structure -> IF LPAREN expression RPAREN block .)
+    $end            reduce using rule 40 (control_structure -> IF LPAREN expression RPAREN block .)
+    RBRACE          reduce using rule 40 (control_structure -> IF LPAREN expression RPAREN block .)
+    ELSE            shift and go to state 90
+
+
+state 85
+
+    (17) block -> LBRACE . declaration_list RBRACE
+    (2) declaration_list -> . declaration_list declaration
+    (3) declaration_list -> . declaration
+    (4) declaration -> . var_declaration
+    (5) declaration -> . fun_declaration
+    (6) declaration -> . struct_declaration
+    (7) declaration -> . control_structure
+    (8) declaration -> . comment
+    (9) var_declaration -> . TYPE ID SEMICOLON
+    (10) var_declaration -> . TYPE ID EQUALS expression SEMICOLON
+    (11) fun_declaration -> . TYPE ID LPAREN params RPAREN block
+    (45) struct_declaration -> . STRUCT ID LBRACE var_declaration_list RBRACE
+    (40) control_structure -> . IF LPAREN expression RPAREN block
+    (41) control_structure -> . IF LPAREN expression RPAREN block ELSE block
+    (42) control_structure -> . WHILE LPAREN expression RPAREN block
+    (43) control_structure -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block
+    (44) control_structure -> . RETURN expression SEMICOLON
+    (18) comment -> . COMMENT
+    (19) comment -> . MULTICOMMENT
+
+    TYPE            shift and go to state 9
+    STRUCT          shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
+    RETURN          shift and go to state 14
+    COMMENT         shift and go to state 15
+    MULTICOMMENT    shift and go to state 16
+
+    declaration_list               shift and go to state 91
+    declaration                    shift and go to state 3
+    var_declaration                shift and go to state 4
+    fun_declaration                shift and go to state 5
+    struct_declaration             shift and go to state 6
+    control_structure              shift and go to state 7
+    comment                        shift and go to state 8
+
+state 86
+
+    (42) control_structure -> WHILE LPAREN expression RPAREN block .
+
+    TYPE            reduce using rule 42 (control_structure -> WHILE LPAREN expression RPAREN block .)
+    STRUCT          reduce using rule 42 (control_structure -> WHILE LPAREN expression RPAREN block .)
+    IF              reduce using rule 42 (control_structure -> WHILE LPAREN expression RPAREN block .)
+    WHILE           reduce using rule 42 (control_structure -> WHILE LPAREN expression RPAREN block .)
+    FOR             reduce using rule 42 (control_structure -> WHILE LPAREN expression RPAREN block .)
+    RETURN          reduce using rule 42 (control_structure -> WHILE LPAREN expression RPAREN block .)
+    COMMENT         reduce using rule 42 (control_structure -> WHILE LPAREN expression RPAREN block .)
+    MULTICOMMENT    reduce using rule 42 (control_structure -> WHILE LPAREN expression RPAREN block .)
+    $end            reduce using rule 42 (control_structure -> WHILE LPAREN expression RPAREN block .)
+    RBRACE          reduce using rule 42 (control_structure -> WHILE LPAREN expression RPAREN block .)
+
+
+state 87
+
+    (43) control_structure -> FOR LPAREN expression SEMICOLON expression . SEMICOLON expression RPAREN block
+
+    SEMICOLON       shift and go to state 92
+
+
+state 88
+
+    (11) fun_declaration -> TYPE ID LPAREN params RPAREN block .
+
+    TYPE            reduce using rule 11 (fun_declaration -> TYPE ID LPAREN params RPAREN block .)
+    STRUCT          reduce using rule 11 (fun_declaration -> TYPE ID LPAREN params RPAREN block .)
+    IF              reduce using rule 11 (fun_declaration -> TYPE ID LPAREN params RPAREN block .)
+    WHILE           reduce using rule 11 (fun_declaration -> TYPE ID LPAREN params RPAREN block .)
+    FOR             reduce using rule 11 (fun_declaration -> TYPE ID LPAREN params RPAREN block .)
+    RETURN          reduce using rule 11 (fun_declaration -> TYPE ID LPAREN params RPAREN block .)
+    COMMENT         reduce using rule 11 (fun_declaration -> TYPE ID LPAREN params RPAREN block .)
+    MULTICOMMENT    reduce using rule 11 (fun_declaration -> TYPE ID LPAREN params RPAREN block .)
+    $end            reduce using rule 11 (fun_declaration -> TYPE ID LPAREN params RPAREN block .)
+    RBRACE          reduce using rule 11 (fun_declaration -> TYPE ID LPAREN params RPAREN block .)
+
+
+state 89
+
+    (14) param_list -> param_list COMMA param .
+
+    COMMA           reduce using rule 14 (param_list -> param_list COMMA param .)
+    RPAREN          reduce using rule 14 (param_list -> param_list COMMA param .)
+
+
+state 90
+
+    (41) control_structure -> IF LPAREN expression RPAREN block ELSE . block
+    (17) block -> . LBRACE declaration_list RBRACE
+
+    LBRACE          shift and go to state 85
+
+    block                          shift and go to state 93
+
+state 91
+
+    (17) block -> LBRACE declaration_list . RBRACE
+    (2) declaration_list -> declaration_list . declaration
+    (4) declaration -> . var_declaration
+    (5) declaration -> . fun_declaration
+    (6) declaration -> . struct_declaration
+    (7) declaration -> . control_structure
+    (8) declaration -> . comment
+    (9) var_declaration -> . TYPE ID SEMICOLON
+    (10) var_declaration -> . TYPE ID EQUALS expression SEMICOLON
+    (11) fun_declaration -> . TYPE ID LPAREN params RPAREN block
+    (45) struct_declaration -> . STRUCT ID LBRACE var_declaration_list RBRACE
+    (40) control_structure -> . IF LPAREN expression RPAREN block
+    (41) control_structure -> . IF LPAREN expression RPAREN block ELSE block
+    (42) control_structure -> . WHILE LPAREN expression RPAREN block
+    (43) control_structure -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block
+    (44) control_structure -> . RETURN expression SEMICOLON
+    (18) comment -> . COMMENT
+    (19) comment -> . MULTICOMMENT
+
+    RBRACE          shift and go to state 94
+    TYPE            shift and go to state 9
+    STRUCT          shift and go to state 10
+    IF              shift and go to state 11
+    WHILE           shift and go to state 12
+    FOR             shift and go to state 13
+    RETURN          shift and go to state 14
+    COMMENT         shift and go to state 15
+    MULTICOMMENT    shift and go to state 16
+
+    declaration                    shift and go to state 17
+    var_declaration                shift and go to state 4
+    fun_declaration                shift and go to state 5
+    struct_declaration             shift and go to state 6
+    control_structure              shift and go to state 7
+    comment                        shift and go to state 8
+
+state 92
+
+    (43) control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON . expression RPAREN block
+    (20) expression -> . assignment_expression
+    (21) expression -> . simple_expression
+    (22) assignment_expression -> . ID EQUALS expression
+    (23) assignment_expression -> . ID PLUSEQUAL expression
+    (24) assignment_expression -> . ID MINUSEQUAL expression
+    (25) assignment_expression -> . ID TIMESEQUAL expression
+    (26) assignment_expression -> . ID DIVEQUAL expression
+    (27) assignment_expression -> . ID MODEQUAL expression
+    (28) simple_expression -> . additive_expression
+    (29) additive_expression -> . additive_expression PLUS term
+    (30) additive_expression -> . additive_expression MINUS term
+    (31) additive_expression -> . term
+    (32) term -> . term TIMES factor
+    (33) term -> . term DIVIDE factor
+    (34) term -> . factor
+    (35) factor -> . LPAREN expression RPAREN
+    (36) factor -> . ID
+    (37) factor -> . INT
+    (38) factor -> . FLOAT
+    (39) factor -> . STRING
+
+    ID              shift and go to state 26
+    LPAREN          shift and go to state 30
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    STRING          shift and go to state 33
+
+    expression                     shift and go to state 95
+    assignment_expression          shift and go to state 24
+    simple_expression              shift and go to state 25
+    additive_expression            shift and go to state 27
+    term                           shift and go to state 28
+    factor                         shift and go to state 29
+
+state 93
+
+    (41) control_structure -> IF LPAREN expression RPAREN block ELSE block .
+
+    TYPE            reduce using rule 41 (control_structure -> IF LPAREN expression RPAREN block ELSE block .)
+    STRUCT          reduce using rule 41 (control_structure -> IF LPAREN expression RPAREN block ELSE block .)
+    IF              reduce using rule 41 (control_structure -> IF LPAREN expression RPAREN block ELSE block .)
+    WHILE           reduce using rule 41 (control_structure -> IF LPAREN expression RPAREN block ELSE block .)
+    FOR             reduce using rule 41 (control_structure -> IF LPAREN expression RPAREN block ELSE block .)
+    RETURN          reduce using rule 41 (control_structure -> IF LPAREN expression RPAREN block ELSE block .)
+    COMMENT         reduce using rule 41 (control_structure -> IF LPAREN expression RPAREN block ELSE block .)
+    MULTICOMMENT    reduce using rule 41 (control_structure -> IF LPAREN expression RPAREN block ELSE block .)
+    $end            reduce using rule 41 (control_structure -> IF LPAREN expression RPAREN block ELSE block .)
+    RBRACE          reduce using rule 41 (control_structure -> IF LPAREN expression RPAREN block ELSE block .)
+
+
+state 94
+
+    (17) block -> LBRACE declaration_list RBRACE .
+
+    ELSE            reduce using rule 17 (block -> LBRACE declaration_list RBRACE .)
+    TYPE            reduce using rule 17 (block -> LBRACE declaration_list RBRACE .)
+    STRUCT          reduce using rule 17 (block -> LBRACE declaration_list RBRACE .)
+    IF              reduce using rule 17 (block -> LBRACE declaration_list RBRACE .)
+    WHILE           reduce using rule 17 (block -> LBRACE declaration_list RBRACE .)
+    FOR             reduce using rule 17 (block -> LBRACE declaration_list RBRACE .)
+    RETURN          reduce using rule 17 (block -> LBRACE declaration_list RBRACE .)
+    COMMENT         reduce using rule 17 (block -> LBRACE declaration_list RBRACE .)
+    MULTICOMMENT    reduce using rule 17 (block -> LBRACE declaration_list RBRACE .)
+    $end            reduce using rule 17 (block -> LBRACE declaration_list RBRACE .)
+    RBRACE          reduce using rule 17 (block -> LBRACE declaration_list RBRACE .)
+
+
+state 95
+
+    (43) control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression . RPAREN block
+
+    RPAREN          shift and go to state 96
+
+
+state 96
+
+    (43) control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN . block
+    (17) block -> . LBRACE declaration_list RBRACE
+
+    LBRACE          shift and go to state 85
+
+    block                          shift and go to state 97
+
+state 97
+
+    (43) control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block .
+
+    TYPE            reduce using rule 43 (control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block .)
+    STRUCT          reduce using rule 43 (control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block .)
+    IF              reduce using rule 43 (control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block .)
+    WHILE           reduce using rule 43 (control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block .)
+    FOR             reduce using rule 43 (control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block .)
+    RETURN          reduce using rule 43 (control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block .)
+    COMMENT         reduce using rule 43 (control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block .)
+    MULTICOMMENT    reduce using rule 43 (control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block .)
+    $end            reduce using rule 43 (control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block .)
+    RBRACE          reduce using rule 43 (control_structure -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN block .)
+
