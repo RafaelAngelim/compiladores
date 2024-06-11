@@ -1,6 +1,6 @@
 from ply import lex
 
-# Lista de tokens
+
 tokens = (
     'ID', 'TYPE', 'INT', 'FLOAT', 'STRING', 'KEYWORD',
     'SEMICOLON', 'DOT', 'COMMA', 'PLUSPLUS', 'MINUSMINUS',
@@ -27,7 +27,6 @@ keywords = {
     'return': 'RETURN'
 }
 
-# Regular expression rules for simple tokens
 t_PLUS = r'\+'
 t_PLUSPLUS = r'\+\+'
 t_MINUSMINUS = r'\-\-'
@@ -62,7 +61,6 @@ t_MODEQUAL = r'%='
 t_ANDANDEQUAL = r'&&='
 t_OROREQUAL = r'\|\|='
 
-# Regular expression rules with some action code
 def t_TYPE(t):
     r'int|float|double|char|boolean'
     t.type = keywords.get(t.value, 'TYPE')
